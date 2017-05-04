@@ -1,7 +1,7 @@
 package com.example.service.impl;
 
-import com.example.domain.User;
-import com.example.domain.UserMapper;
+import com.example.domain.SysUser;
+import com.example.domain.SysUserMapper;
 import com.example.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,30 +17,35 @@ public class UserServiceImpl implements UserService {
 
 
     @Autowired
-    private UserMapper userMapper;
+    private SysUserMapper userMapper;
 
     @Override
-    public List<User> getUserList() {
+    public List<SysUser> getUserList() {
         return userMapper.findAll();
     }
 
     @Override
-    public void add(User user) {
-        userMapper.insert(user.getName(), user.getAge());
+    public void add(SysUser user) {
+        userMapper.insert(user.getName(), user.getAge(), user.getEmail());
     }
 
     @Override
-    public User getUser(Long id) {
+    public SysUser getUser(Long id) {
         return userMapper.findById(id);
     }
 
     @Override
-    public void update(Long id, User user) {
-        userMapper.update(id, user.getName(), user.getAge());
+    public void update(Long id, SysUser user) {
+        userMapper.update(id, user.getName(), user.getAge(), user.getEmail());
     }
 
     @Override
     public void remove(Long id) {
         userMapper.deleteById(id);
+    }
+
+    @Override
+    public SysUser findByName(String userName) {
+        return userMapper.findByName(userName);
     }
 }

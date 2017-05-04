@@ -1,6 +1,6 @@
 package com.example.service;
 
-import com.example.domain.User;
+import com.example.domain.SysUser;
 
 import java.util.List;
 
@@ -10,13 +10,15 @@ import java.util.List;
 public interface UserService {
 
 
-    List<User> getUserList();
+    List<SysUser> getUserList();
 
-    void add(User user);
+    void add(SysUser user);
 
-    User getUser(Long id);
+    SysUser getUser(Long id);
 
-    void update(Long id, User user);
+    void update(Long id, SysUser user);
 
     void remove(Long id);
+
+    SysUser findByName(String userName);
 }
